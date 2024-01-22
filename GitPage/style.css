@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 24px;
+}
+body {
+  background: rgb(54, 18, 171);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin: 10px;
+}
+input {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: cornflowerblue;
+  color: aliceblue;
+  border: none;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+#card{
+    width: 400px;
+    text-align: center;
+    padding: 5px;
+    background-color: rgb(110, 162, 208);
+    color:aliceblue;
+    border-radius: 10px;
+}
