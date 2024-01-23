@@ -27,14 +27,55 @@ button {
 }
 
 img {
-    width: 100%;
-    border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
 }
-#card{
-    width: 400px;
-    text-align: center;
-    padding: 5px;
-    background-color: rgb(110, 162, 208);
-    color:aliceblue;
-    border-radius: 10px;
+#card {
+  width: 400px;
+  text-align: center;
+  padding: 5px;
+  background-color: rgb(110, 162, 208);
+  color: aliceblue;
+  border-radius: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  background-color: grey;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#decor {
+  background-color: rgb(137, 188, 237);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+#load {
+  animation-name: loadpage;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  width: 100px;
+  height: 100px;
+  background-color:cornflowerblue;
+}
+.none {
+  display: none;
+}
+@keyframes loadpage {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
