@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  
     <link
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v5.15.2/css/all.css"
@@ -8,20 +8,86 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      main{
+        display: flex;
+        align-items: center;
+        background: rgb(34, 5, 150);
+      }
+      nav{
+        overflow: hidden;
+      }
+      div{
+        display: flex;
+        transition: all 0.5s;
+        /*transform: translateX(-99.3);*/
+      }
+      img{
+        /* min-width: 33.3%; */
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+      i{
+        padding: 10px;
+        font-size: 40px;
+        color:bisque ;
+      }
+    </style>
+    
   </head>
   <body>
     <main>
-      <i class="fas fa-angle-left" id="arrowLeft"></i>
+      <i class="fas fa-angle-left" id="arrowLeft" ></i>
       <nav>
-        <div id="carausel">
-          <img />
-          <img />
-          <img />
-          <img />
-          <img />
+        <div id="carousel">
+          <img src="./1.jpg" />
+          <img src="./2.jpeg"/>
+          <img src="./3.jpeg"/>
+          <img src="./4.webp"/>
+          <img src="./5.jpeg"/>
+          <img src="./6.jpeg"/>
         </div>
       </nav>
       <i class="fas fa-angle-right" id="arrowRight"></i>
     </main>
   </body>
+  <script>
+    let left = document.getElementById("arrowLeft")
+    let right = document.getElementById("arrowRight")
+    let carousel = document.getElementById("carousel")
+
+    const carouselElem = 3;
+    const width= 100 / carouselElem;
+    const item = carousel.children.length - carouselElem;
+    let current= 0
+
+    for (let i = 0; i < carousel.childElementCount; i++) {
+      carousel.children[i].style.minWidth = width + "%";
+    }
+
+    right.addEventListener("click", clickRight);
+    function clickRight() {
+      current += 1;
+      if (current>= item) {
+        current = 0;
+      }
+      carousel.style.transform = `translateX(-${width * current}%)`;
+    
+
+    }
+    left.addEventListener("click", clickLeft);
+
+        function clickLeft() {
+            current -= 1;
+            if (current < 0) {
+                current = item;
+            }
+            carousel.style.transform = `translateX(-${width * current}%)`;
+        }
+  </script>
 </html>
