@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    :root {
+      --background: white;
+      --background-btn: black;
+      --size-btn: 30px;
+      --size-padding: 10px 20px;
+    }
+    [theme="light"] {
+      --background: white;
+      --background-btn: black;
+    }
+    [theme="dark"] {
+      --background: black;
+      --background-btn: white;
+    }
+    @media screen and (max-width: 720px) {
+      :root {
+        --size-btn: 24px;
+        --size-padding: 5px 10px;
+      }
+    }
+
+    #block {
+      background-color: var(--background);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 1s;
+    }
+    #btn {
+      background: var(--background-btn);
+      color: var(--background);
+      font-size: var(--size-btn);
+      padding: var(--size-padding);
+      border-radius: 10px;
+      transition: all 1s;
+    }
+  </style>
+  <body>
+    <main id="block" theme="light">
+      <button id="btn">Сменить тему</button>
+    </main>
+  </body>
+  <script>
+    let block = document.getElementById("block");
+    let btn = document.getElementById("btn");
+    btn.addEventListener("click", changeTheme);
+    function changeTheme() {
+      if (block.getAttribute("theme") == "light") {
+        block.setAttribute("theme", "dark");
+      } else {
+        block.setAttribute("theme", "light");
+      }
+    }
+  </script>
+</html>
