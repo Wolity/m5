@@ -8,13 +8,13 @@ let grid = 16;
 let count = 0;
 
 let snake = {
-  speed: 4,
+  speed: 8,
   x: 0,
   y: 0,
   dx: grid,
   dy: 0,
   tails: [],
-  countTails: 10,
+  countTails: 2,
 };
 
 let eat = {
@@ -39,16 +39,76 @@ function start() {
   count = 0;
   clear();
   drawEat();
-  //   drawSnake();
-  //   finish();
+  drawSnake();
+  finish();
 }
 
 function drawEat() {
   context.fillStyle = "red";
   context.fillRect(eat.x, eat.y, grid - 1, grid - 1);
   if (snake.x == eat.x && snake.y == eat.y) {
+    snake.countTails++;
     eat.x = getRandomInt(0, canvas.width / grid) * grid;
     eat.y = getRandomInt(0, canvas.height / grid) * grid;
+  }
+}
+function drawSnake() {
+  snake.x += snake.dx;
+  snake.y += snake.dy;
+  if (snake.x < 0) {
+    snake.x = canvas.width - grid;
+  } else if (snake.x >= canvas.width) {
+    snake.x = 0;
+  }
+
+  if (snake.y < 0) {
+    snake.y = canvas.height - grid;
+  } else if (snake.y >= canvas.height) {
+    snake.y = 0;
+  }
+  snake.tails.unshift({
+    x: snake.x,
+    y: snake.y,
+  });
+
+  if (snake.tails.length > snake.countTails) {
+    snake.tails.pop();
+  }
+  snake.tails.forEach((tail) => {
+    context.fillStyle = "green";
+    context.fillRect(tail.x, tail.y, grid - 1, grid - 1);
+  });
+}
+document.addEventListener("keydown", (e) => {
+  if (e.code === "KeyA" && snake.dx == 0) {
+    snake.dx = -grid;
+    snake.dy = 0;
+  } else if (e.code === "KeyW" && snake.dy == 0) {
+    snake.dx = 0;
+    snake.dy = -grid;
+  } else if (e.code === "KeyD" && snake.dx == 0) {
+    snake.dx = grid;
+    snake.dy = 0;
+  } else if (e.code === "KeyS" && snake.dy == 0) {
+    snake.dx = 0;
+    snake.dy = grid;
+  }
+});
+function finish() {
+  for (let i = 0; i < snake.tails.length; i++) {
+    for (let k = 0; k < snake.tails.length; i++) {
+      w = snake.tails[i];
+      s = snake.tails[k];
+      if (w.x == s.x && w.y == s.y && i!= k){
+        snake.x = 0;
+        snake.y = 0;
+        snake.tails = [];
+        snake.countTails= 4;
+        snake.dx = grid;
+        snake.dy = 0;
+
+      }
+    }
   }
 }
 
